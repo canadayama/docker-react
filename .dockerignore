@@ -1,6 +1,9 @@
-node_modules
-Dockerfile
+# Files
+.env
 .git
 .gitignore
 .dockerignore
-#.env
+Dockerfile
+
+# Folders
+node_modules/

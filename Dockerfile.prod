@@ -1,0 +1,23 @@
+ARG NODE_VERSION=18
+
+FROM node:${NODE_VERSION}-alpine as build
+
+ENV LANG=C.UTF-8
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+RUN npm install -g npm@latest
+
+COPY ./app/package.json .
+RUN npm install
+
+COPY ./react-app .
+
+RUN npm run build
+
+
+FROM nginx
+
+COPY --from=build /app/build /usr/share/nginx/html

@@ -1,0 +1,19 @@
+ARG NODE_VERSION=18
+
+FROM node:${NODE_VERSION}-alpine
+
+# Set language.
+ENV LANG=C.UTF-8
+
+# Set working directory.
+WORKDIR /app
+
+# Copy the package.json to working directory.
+COPY ./react-app/package.json .
+
+# Install the packages.
+RUN npm install
+
+COPY ./react-app .
+
+EXPOSE 3000

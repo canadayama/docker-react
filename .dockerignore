@@ -1,0 +1,9 @@
+# Files
+Dockerfile
+docker-compose*.yaml
+.env
+.gitignore
+.dockerignore
+
+# Folders
+/node_modules

@@ -1,0 +1,24 @@
+ARG NODE_VERSION=18
+
+FROM node:${NODE_VERSION} as build
+
+# Set language.
+ENV LANG=C.UTF-8
+
+# Set working directory.
+WORKDIR /app
+
+# Copy the package.json to working directory.
+COPY ./react-app/package.json .
+
+# Install the packages.
+RUN npm install
+
+COPY ./react-app .
+
+RUN npm run build
+
+
+FROM nginx
+
+COPY --from=build /app/build /usr/share/nginx/html
